@@ -1,6 +1,7 @@
 from typing import NamedTuple
 import numpy as np
 import re
+import matplotlib.pyplot as plt
 
 class Claim(NamedTuple):
     claim_id: int
@@ -37,11 +38,14 @@ def do_task():
     for claim in claims:
         claim_counts[claim.x:get_right_side(claim), claim.y:get_bottom(claim)] += 1
 
+    plt.imshow(claim_counts, cmap='hot', interpolation='nearest')
+
     claim = next((claim for claim in claims if claim_is_free(claim, claim_counts)), None)
     if (claim):
         print("yay", claim.claim_id)
     else:
         print("boo didn't find it")
+    plt.savefig('heatmap.png')
 
 
 do_task()
