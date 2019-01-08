@@ -11,7 +11,7 @@ class Claim(NamedTuple):
     height: int
 
 regular_expression = re.compile(r"#([0-9]+) @ ([0-9]+),([0-9]+): ([0-9]+)x([0-9]+)")
-def create_claim(line:str):
+def create_claim(line: str):
     return Claim(*[int(match) for match in regular_expression.findall(line)[0]])
 
 def get_claims():
